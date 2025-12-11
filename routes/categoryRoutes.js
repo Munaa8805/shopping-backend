@@ -99,8 +99,12 @@ router.put("/:id", async (req, res, next) => {
       res.status(404);
       throw new Error("Category not found");
     }
+    if (category.name === name?.trim()) {
+      category.name = category.name;
+    } else {
+      category.name = name?.trim() || category.name;
+    }
 
-    category.name = name?.trim() || category.name;
     category.description = description?.trim() || category.description;
 
     // console.log("Updating category:", category);
